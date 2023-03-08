@@ -3,7 +3,11 @@ const cors=require("cors")
 const bodyParser=require("body-parser")
 const sequelize=require("./util/database")
 
+const user=require("./models/user")
+const message=require("./models/message")
+
 const signup=require("./routes/user")
+const chat =require("./routes/chatBe")
 
 const app=express()
 
@@ -13,6 +17,12 @@ app.use(cors({
 app.use(bodyParser.json())
 
 app.use("/user",signup)
+
+app.use("/chat",chat)
+
+//associations
+user.hasMany(message)
+message.belongsTo(user)
 
 sequelize.sync()
 .then(()=>{
