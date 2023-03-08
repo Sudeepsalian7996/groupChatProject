@@ -1,5 +1,6 @@
 const signupdb=require("../models/user")
 const encrypt=require("bcrypt")
+const jwt=require("jsonwebtoken")
 
 exports.signupUser=async(req,res)=>{
     try{
@@ -40,6 +41,32 @@ exports.signupUser=async(req,res)=>{
     }
 }
 
+function createToken(id){
+   return jwt.sign({userId:id},"thestring")
+}
+
 exports.loginUser=async(req,res)=>{
-    console.log(req.body.password)
+    try{
+        const email=req.body.email
+        const password= req.body.password
+    
+        const userInfo=await signupdb.findAll({where:{email:email}})
+        if(userInfo.length>0){
+            encrypt.compare(password,userInfo[0].password,(err,result)=>{
+                if(err){
+                    throw new Error("somethig wrong while decrypton of a password")
+                }
+                if(result===true){
+                    res.json({success:true,message:"login successfull",token:createToken(userInfo[0].id)})
+                }else{
+                    res.json({success:false,message:"password is incorrect"})
+                }
+            })
+        }else{
+            return res.json({success:false,message:"user not authorized"})
+        }
+    }catch(err){
+        console.log("error in backend login",err)
+        res.json({Error:err})
+    }
 }
