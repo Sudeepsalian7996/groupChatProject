@@ -33,7 +33,7 @@ async function loginPage(e){
         },3000)
         localStorage.setItem("token",data.data.token)
         //connecting login page to expense app
-        window.location.href="./expense.html"
+        window.location.href="./chat.html"
     }
 }catch{
         console.log("error in login page FE")
