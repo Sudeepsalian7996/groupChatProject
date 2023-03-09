@@ -3,22 +3,31 @@ const sendButton=document.getElementById('send')
 
 window.addEventListener("DOMContentLoaded",async()=>{
    try{
-    const response=await axios.get("http://localhost:3000/chat/showMessage")
-    const showData=response.data.allData;
-      for(let i=0;i<showData.length;i++){
-        showChatOnScreen(showData[i].message)
-      }
-   
+        const response=await axios.get("http://localhost:3000/chat/showMessage")
+        const showData=response.data.allData;
+          for(let i=showData.length-10;i<showData.length;i++){        
+            localStorage.setItem(showData[i].id,showData[i].message)     
+            showChatOnScreen(showData[i].id)
+        }  
+  
    }catch(err){
     console.log("dom loading error",err)
    }
 })
 
-async function showChatOnScreen(msg){
+async function showChatOnScreen(id,postMsg){
     try{
+       
+       if(postMsg){
+        let recent=id-10
+       localStorage.removeItem(recent) 
+        localStorage.setItem(id,postMsg)
+       }
+       const msg=localStorage.getItem(id)
        const parent=document.getElementById("allmessages")
        const child=`</li class="text-white">${msg}</li><br>`
        parent.innerHTML=parent.innerHTML+child
+      
     }catch(err){
         console.log("error in showchatonscreen",err)
     }
@@ -35,7 +44,8 @@ async function sendChat(e){
         const data=await axios.post("http://localhost:3000/chat/message",obj,{
             headers:{"Authorization":getToken}
         })
-        showChatOnScreen(data.data.data.message)
+       console.log(data)
+        showChatOnScreen(data.data.data.id,data.data.data.message)
     }catch(err){
         console.log("error in snding message",err)
     }
