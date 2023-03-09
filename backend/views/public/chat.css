@@ -31,3 +31,8 @@ input[type="submit"] {
     height: 20px;
     width: 50px;
 }
+
+ul{
+    color:white;
+    text-align: left;
+}
