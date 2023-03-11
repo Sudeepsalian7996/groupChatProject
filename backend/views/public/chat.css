@@ -19,6 +19,25 @@ h3{
     margin-bottom: 10px;
     padding: 5px;
 }
+#myGroups{
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+}
+hr{
+    background-color: rgb(176, 243, 243);
+}
+.flexible{
+   display: grid;
+}
+#newGroup{
+    background-color: rgb(246, 77, 77);
+    color: white;
+    padding: 5px;
+}
+button:hover{
+    background-color: red;
+}
 main{
     display: flex;
     position: absolute;

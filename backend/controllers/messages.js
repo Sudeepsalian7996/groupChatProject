@@ -5,9 +5,11 @@ const userdb=require("../models/user")
 exports.userMessage=async(req,res)=>{
     try{
         const userMsg=req.body.chat
+        const groupId= req.body.groupId
         const data=await messagedb.create({
          message:userMsg,
-         userId:req.user.id
+         userId:req.user.id,
+         groupId:groupId
         })
         res.json({data:data})
     }catch(err){
@@ -18,7 +20,8 @@ exports.userMessage=async(req,res)=>{
 
 exports.showMessage=async(req,res)=>{
     try{
-        const data=await messagedb.findAll()
+       const groupid =req.header("Authorization")
+        const data=await messagedb.findAll({where:{groupId:groupid}})
         res.json({allData:data})
     }catch(err){
         console.log("error in showing message on the screen",err)
