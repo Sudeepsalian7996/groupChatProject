@@ -28,7 +28,7 @@ async function getAllGroupNames(addGroup){
         const groupNames=data.data.groupNames
         const groupId=data.data.groupId
         for(let i=0;i<groupNames.length;i++){
-            console.log(groupId)
+            
             let child=`<button onclick="insideGroup(${groupId[i]})" class="btn btn-secondary btn-lg" style="width:100%;margin-bottom:5px">${groupNames[i]}</button>`
             parent.innerHTML=parent.innerHTML+child
         }

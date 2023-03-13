@@ -10,7 +10,7 @@ header{
 h2{
     font-weight: bold;
 }
-h3{
+.chats{
     background-image: url("../images/chat2.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -20,9 +20,18 @@ h3{
     padding: 5px;
 }
 #myGroups{
-    color: white;
+    color: rgba(255, 255, 255, 0.738);
     margin-top: 10px;
     text-align: center;
+}
+#logoh3{
+    background-image: url("../images/membersLogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 hr{
     background-color: rgb(176, 243, 243);
@@ -38,6 +47,10 @@ hr{
 button:hover{
     background-color: red;
 }
+#manage{
+    margin-top: 7px;
+    width: 100%;
+}
 main{
     display: flex;
     position: absolute;
@@ -51,7 +64,18 @@ input[type="submit"] {
     width: 50px;
 }
 
-ul{
+#allmessages{
     color:white;
     text-align: left;
+}
+#showMemebrs{
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#back{
+    width: 100%;
+    text-align: center;
 }
