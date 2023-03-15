@@ -15,7 +15,7 @@ async function signupUser(e){
         phone:phone.value,
         email:email.value
     }
-    let data=await axios.post("http://localhost:3000/user/signup",obj)
+    let data=await axios.post("http://35.174.15.21:3000/user/signup",obj)
     //Errors in front end
     if(data.data.success===false){
         const signUpText=document.createTextNode(data.data.message)

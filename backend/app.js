@@ -3,6 +3,7 @@ const cors=require("cors")
 const bodyParser=require("body-parser")
 const sequelize=require("./util/database")
 const cron=require("node-cron")
+const path=require("path")
 require("dotenv").config()
 
 const user=require("./models/user")
@@ -28,6 +29,9 @@ app.use("/chat",chat)
 
 app.use("/group",groups)
 
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname,`views/${req.url}`))
+})
 //associations
 user.hasMany(message)
 message.belongsTo(user)

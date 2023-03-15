@@ -13,7 +13,7 @@ async function loginPage(e){
                 email:email.value,
                 password:password.value
             }
-            const data=await axios.post("http://localhost:3000/user/login",login_obj)
+            const data=await axios.post("http://35.174.15.21:3000/user/login",login_obj)
             if(data.data.success===false){
                 const errorText=document.createTextNode(data.data.message)
                 loginError.appendChild(errorText)

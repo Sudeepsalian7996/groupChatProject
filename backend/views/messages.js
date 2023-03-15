@@ -18,7 +18,7 @@ function parseJwt (token) {
 window.addEventListener("DOMContentLoaded",async()=>{
    try{
         const groupId=localStorage.getItem("groupId")
-        const response=await axios.get("http://localhost:3000/chat/showMessage",{headers:{"Authorization":groupId}})
+        const response=await axios.get("http://35.174.15.21:3000/chat/showMessage",{headers:{"Authorization":groupId}})
 
         const showData=response.data.allData;
     
@@ -71,7 +71,7 @@ async function sendChat(e){
             
         }
         const getToken=localStorage.getItem("token")
-        const data=await axios.post("http://localhost:3000/chat/message",obj,{
+        const data=await axios.post("http://35.174.15.21:3000/chat/message",obj,{
             headers:{"Authorization":getToken}
         })
        console.log(data)
@@ -92,7 +92,7 @@ async function manageMembers(e){
         parent.style.display="none"
         document.getElementById('showMemebrs').style.display = 'block'
         const getToken=localStorage.getItem("token")
-        const response=await axios.get("http://localhost:3000/chat/getUsers",{
+        const response=await axios.get("http://35.174.15.21:3000/chat/getUsers",{
             headers:{"Authorization":getToken}
         })
            
@@ -104,7 +104,7 @@ const members=document.getElementById("alreadyMember")
                     arr1.push(userDetails[i].id)
                 } 
         
-         const response2=await axios.get("http://localhost:3000/chat/allUsers",{
+         const response2=await axios.get("http://35.174.15.21:3000/chat/allUsers",{
             headers:{"Authorization":getToken}
         })
         let arr2=[]
@@ -226,7 +226,7 @@ async function addMember(id){
         groupId:groupId
     }
     document.getElementById('showMemebrs').style.display = 'none'
-    const response=await axios.post("http://localhost:3000/chat/addToGroup",obj)
+    const response=await axios.post("http://35.174.15.21:3000/chat/addToGroup",obj)
    window.location.reload()
    
    confirm("User added successfully...")
@@ -243,6 +243,6 @@ async function removeMember(id){
     const child=document.getElementById(id)
     members.removeChild(child)
     confirm("Do you want to remove this user?")
-    const response=await axios.post("http://localhost:3000/chat/removeMember",obj)
+    const response=await axios.post("http://35.174.15.21:3000/chat/removeMember",obj)
     window.location.reload()
 }
