@@ -3,6 +3,7 @@ const cors=require("cors")
 const bodyParser=require("body-parser")
 const sequelize=require("./util/database")
 const cron=require("node-cron")
+require("dotenv").config()
 
 const user=require("./models/user")
 const message=require("./models/message")
