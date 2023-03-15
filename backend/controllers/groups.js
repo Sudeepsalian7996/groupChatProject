@@ -9,12 +9,13 @@ exports.groupNames=async(req,res)=>{
             nameOfGroup:groupname
         })
         const groups=data.dataValues.id
+        console.log(data)
         const response=await usergroupdb.create({
             groupNameId:groups,
             userId:req.user.id,
             isAdmin:true
         })
-        console.log(response)
+   
         res.json({data:data})
     }catch(err){
         console.log("error in creating group BE",err)

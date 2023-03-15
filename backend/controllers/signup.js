@@ -32,7 +32,7 @@ exports.signupUser=async(req,res)=>{
                 email:email,
                 password:hash
             })
-            res.json({success:true,data:data,message:"signup successfull"})
+            res.json({success:true,data:data,message:"signup successfull,login again to enter the page"})
         })
       
     }catch(err){
